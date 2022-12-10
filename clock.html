@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Digital Clock</title>
+    <style>
+        body{
+          background-color: black;
+        }
+        .Clock{
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             color : lime;
+             transform: translateX(-50%) translateY(-50%);  
+             /* translate allows us to move a element without effetcing other elements in the documnet */
+             font-family: Orbitron;
+             font-size: 60px;
+             letter-spacing: 7px;
+        /* } */
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  } 
+ }
+    </style>
+</head>
+<body>
+<div id="DigitalClock" class="Clock"> </div>
+<script type="text/javascript"> 
+function showTime() {
+      var date = new Date();
+      var h = date.getHours();
+      var m = date.getMinutes();
+      var s = date.getSeconds();
+      var session = "AM";  
+       if(h==0){
+        h = 12 ;  //12 hour formate
+       }
+       if(h>12) {    // h-12 means after 12 its 13 so 13-12 = 1 so now its count from 1 not form 13
+        h -= 12   //12hour formate
+        session = "PM";
+       }
+       if(h<10){
+         h = "0" + h;
+       }
+       if(m<10){
+        m = "0" + m;
+       }
+       if(s<10){
+        s = "0" + s;
+       }
+      document.getElementById("DigitalClock").innerHTML = h + ":" + m + ":" + s + "" + session;
+      setTimeout(showTime,1000);
+}
+showTime();
+</script>
+</body>
+</html>
